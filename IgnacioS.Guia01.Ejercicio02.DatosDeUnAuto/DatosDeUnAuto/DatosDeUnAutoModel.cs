@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace IgnacioS.Guia01.Ejercicio02.DatosDeUnAuto.DatosDeUnAuto
 {
     internal class DatosDeUnAutoModel
-    {
+    {   //Crear lista de personas
+        //List<personas>
+        private List<Auto> autos = new();
         public string IngresarAuto(Auto auto)
         {
             if(auto.Anio<2000 || auto.Anio>2021)
@@ -18,10 +20,20 @@ namespace IgnacioS.Guia01.Ejercicio02.DatosDeUnAuto.DatosDeUnAuto
             {
                 return "El precio debe ser mayor a 0";
             }
-            else
+            if(string.IsNullOrWhiteSpace(auto.Modelo))
             {
-                return null;
+                return "El modelo del auto es requerido";
             }
+            if(auto.Modelo.Length>30)
+            {
+                return "El modelo del auto no puede tener más de 30 caracteres";
+            }
+            
+            autos.Add(auto);
+
+            return null;
         }
+
+
     }
 }
